@@ -169,41 +169,52 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 70% 30%, rgba(20, 20, 20, 1) 0%, rgba(10, 10, 10, 1) 70%);
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
             z-index: 0;
+            transform: scale(1.1);
+            animation: slowZoom 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1.1); }
+            to { transform: scale(1.25); }
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             width: 100%;
+            max-width: 1200px;
         }
 
         .hero-subtitle {
             text-transform: uppercase;
-            letter-spacing: 0.4em;
-            font-size: 0.8rem;
+            letter-spacing: 0.6em;
+            font-size: 0.75rem;
             color: var(--color-gold);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             display: block;
             opacity: 0;
-            animation: fadeUp 1s 1s forwards;
+            transform: translateY(20px);
+            animation: fadeUp 1.2s 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 8vw, 9rem);
-            line-height: 0.95;
-            margin-bottom: 3rem;
-            transform: translateY(30px);
+            font-size: clamp(3.5rem, 9vw, 10rem);
+            line-height: 0.85;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+            transform: translateY(50px);
             opacity: 0;
-            animation: fadeUp 1s 1.2s forwards;
+            animation: fadeUp 1.5s 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .hero h1 span {
@@ -213,26 +224,39 @@
         .hero h1 .italic {
             font-weight: 300;
             color: var(--color-gold-dim);
-            margin-left: 2vw;
+            margin-left: 4vw;
+            font-family: var(--font-display);
+            font-style: italic;
+        }
+
+        .hero-cta {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s 1.4s forwards cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 3rem;
+            bottom: 4rem;
             left: var(--spacing-container);
             display: flex;
             align-items: center;
-            gap: 1rem;
-            font-size: 0.8rem;
+            gap: 1.5rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            opacity: 0.6;
+            letter-spacing: 0.3em;
+            opacity: 0;
+            animation: fadeIn 1s 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 0.6; }
         }
 
         .line {
-            width: 60px;
+            width: 80px;
             height: 1px;
-            background: white;
+            background: var(--color-gold);
         }
 
         @keyframes fadeUp {
@@ -725,12 +749,16 @@
     </nav>
 
     <header class="hero">
+        <div class="hero-bg"></div>
         <div class="container hero-content">
             <span class="hero-subtitle">Cabinet d'Avocats à la Cour</span>
             <h1>
-                L'Excellence Juridique.<br>
-                <span class="italic">Sans Compromis.</span>
+                <span>L'Excellence</span>
+                <span class="italic">Juridique.</span>
             </h1>
+            <div class="hero-cta">
+                <a href="#expertise" class="btn" style="background: var(--color-gold); color: var(--color-bg-dark); font-weight: 600;">Découvrir l'Expertise</a>
+            </div>
             <div class="scroll-indicator">
                 <div class="line"></div>
                 Découvrir
